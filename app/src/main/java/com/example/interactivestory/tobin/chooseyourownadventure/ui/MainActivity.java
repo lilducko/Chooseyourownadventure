@@ -1,12 +1,15 @@
-package com.example.interactivestory.tobin.chooseyourownadventure;
+package com.example.interactivestory.tobin.chooseyourownadventure.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.example.interactivestory.tobin.chooseyourownadventure.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,16 +28,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = nameEditText.getText().toString();
-                Toast.makeText( MainActivity.this, name, Toast.LENGTH_LONG).show();
                 startStory(name);
             }
 
-            private void startStory(String name) {
 
-            }
+
         }));
     }
     private void startStory(String name) {
+
+        Resources resources = getResources();
+
+        String key = resources.getString(R.string.user_name);
+        Intent intent = new Intent(MainActivity.this, StoryActivity.class);
+        intent.putExtra(key, name);
+        startActivity(intent);
 
     }
 }
